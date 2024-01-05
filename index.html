@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My API Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('footer-image.png'); /* Your image path here */
+            background-size: cover;
+            background-attachment: fixed;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .container { width: 80%; margin: auto; overflow: hidden; }
+        header { background: #333; color: #fff; padding-top: 30px; min-height: 70px; border-bottom: #c3c3c3 3px solid; }
+        header a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 16px; }
+        header ul { padding: 0; list-style: none; }
+        header li { display: inline; margin: 0 20px; }
+        header #branding { float: left; }
+        header #branding h1 { margin: 0; }
+        header nav { float: right; margin-top: 10px; }
+        header .highlight, header .current a { color: #e8491d; font-weight: bold; }
+        header a:hover { color: #ffffff; font-weight: bold; }
+
+        /* Style for the wide picture */
+        .wide-picture {
+            width: 100%;
+            height: auto;
+            display: block; /* Ensures the image takes the full width */
+            margin-top: 20px; /* Adds some space above the image */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div> <!-- Background image div -->
+
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">SLAVIC API</span> Project</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="index.html">Home</a></li>
+                    <li><a href="https://roman-tsisyk.com/">About me</a></li>
+                    <li><a href="https://www.linkedin.com/in/roman-tsisyk/">My LinkedIn</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container content">
+<h1>Welcome to My API Project</h1>
+        <p>
+            This project represents my journey into the world of application architecture.
+            Recently, during an interview for an architect position, I realized that I had never
+            built a complete architecture from the ground up. This sparked the idea for creating my own API repository.
+        </p>
+
+        <h2>Project Description</h2>
+        <p>
+            My project involves creating an API repository that serves as a primitive library for Android platforms.
+            The idea was to build something from scratch, to understand the intricacies of application architecture.
+        </p>
+
+        <h2>Why Slavic Mythology?</h2>
+        <p>
+            While there are numerous APIs based on Greek, Roman, and Norse mythologies, Slavic mythology remains largely untapped.
+            I decided to focus on Slavic myths to bring to light the rich and diverse tales of Slavic culture.
+            This choice also aligns with my personal interest and heritage, offering a unique perspective in the world of API development.
+        </p>
+
+        <h2>Looking Forward</h2>
+        <p>
+            The project is still in its infancy, with a basic test application developed for initial trials.
+            Future plans include expanding the API's capabilities and exploring more aspects of Slavic folklore.
+            I invite collaboration and feedback to grow this project further.
+        </p>
+    </div>
+</body>
+</html>
