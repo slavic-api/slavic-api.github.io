@@ -3,97 +3,540 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My API Project</title>
+    <title>Slavic API Project</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary: #8b0000;
+            --secondary: #f8f1e5;
+            --dark: #2a2a2a;
+            --light: #ffffff;
+            --accent: #d4af37;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+        
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b0000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #4a0000 100%);
+            color: var(--light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #branding h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 2rem;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding-bottom: 5px;
+            position: relative;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
-        .background-image {
+        
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('footer-image.png'); /* Your image path here */
-            background-size: cover;
-            background-attachment: fixed;
-            opacity: 0.05;
-            z-index: -1;
+            background: url("data:image/svg+xml,%3Csvg width='20' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 0l-6 12h12z' fill='%23d4af37' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
         }
-        .content {
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
             position: relative;
             z-index: 1;
         }
-        .container { width: 80%; margin: auto; overflow: hidden; }
-        header { background: #333; color: #fff; padding-top: 30px; min-height: 70px; border-bottom: #c3c3c3 3px solid; }
-        header a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 16px; }
-        header ul { padding: 0; list-style: none; }
-        header li { display: inline; margin: 0 20px; }
-        header #branding { float: left; }
-        header #branding h1 { margin: 0; }
-        header nav { float: right; margin-top: 10px; }
-        header .highlight, header .current a { color: #e8491d; font-weight: bold; }
-        header a:hover { color: #ffffff; font-weight: bold; }
-
-        /* Style for the wide picture */
-        .wide-picture {
-            width: 100%;
-            height: auto;
-            display: block; /* Ensures the image takes the full width */
-            margin-top: 20px; /* Adds some space above the image */
+        
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 4rem 0;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Cards Section */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Feature List */
+        .features {
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #4a0000 100%);
+            color: var(--light);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-section p {
+            color: #ccc;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero {
+                height: 70vh;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="background-image"></div> <!-- Background image div -->
-
+    <div class="background-pattern"></div>
+    
     <header>
-        <div class="container">
+        <div class="container header-container">
             <div id="branding">
                 <h1><span class="highlight">SLAVIC API</span> Project</h1>
             </div>
             <nav>
                 <ul>
-                    <li class="current"><a href="index.html">Home</a></li>
-                    <li><a href="https://roman-tsisyk.com/">About me</a></li>
-                    <li><a href="https://www.linkedin.com/in/roman-tsisyk/">My LinkedIn</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="https://roman-tsisyk.com/">About Me</a></li>
+                    <li><a href="https://www.linkedin.com/in/roman-tsisyk/">LinkedIn</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <div class="container content">
-<h1>Welcome to My API Project</h1>
-        <p>
-            This project represents my journey into the world of application architecture.
-            Recently, during an interview for an architect position, I realized that I had never
-            built a complete architecture from the ground up. This sparked the idea for creating my own API repository.
-        </p>
-
-        <h2>Project Description</h2>
-        <p>
-            My project involves creating an API repository that serves as a primitive library for Android platforms.
-            The idea was to build something from scratch, to understand the intricacies of application architecture.
-        </p>
-
-        <h2>Why Slavic Mythology?</h2>
-        <p>
-            While there are numerous APIs based on Greek, Roman, and Norse mythologies, Slavic mythology remains largely untapped.
-            I decided to focus on Slavic myths to bring to light the rich and diverse tales of Slavic culture.
-            This choice also aligns with my personal interest and heritage, offering a unique perspective in the world of API development.
-        </p>
-
-        <h2>Looking Forward</h2>
-        <p>
-            The project is still in its infancy, with a basic test application developed for initial trials.
-            Future plans include expanding the API's capabilities and exploring more aspects of Slavic folklore.
-            I invite collaboration and feedback to grow this project further.
-        </p>
-    </div>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Slavic Mythology API</h1>
+            <p>Explore the rich world of Slavic folklore and mythology through a modern, developer-friendly API. Bring ancient tales and characters to your Android applications.</p>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+    </section>
+    
+    <main class="container">
+        <section id="about">
+            <h2>About The Project</h2>
+            <p>
+                Welcome to the Slavic API Project, a journey into the depths of application architecture and Slavic mythology. This project was born from a realization during an architect position interview - I had never built a complete architecture from the ground up. That spark ignited a passion to create something unique and meaningful.
+            </p>
+            <p>
+                The Slavic API serves as a primitive library for Android platforms, providing developers with access to a rich database of Slavic mythological entities, stories, and symbols. Unlike the well-documented Greek, Roman, and Norse mythologies, Slavic mythology remains a relatively untapped resource in the world of APIs - something I aim to change.
+            </p>
+        </section>
+        
+        <section id="features">
+            <h2>Why Choose Slavic Mythology?</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="card-content">
+                        <h3>Rich Cultural Heritage</h3>
+                        <p>Slavic mythology offers a vast treasure trove of unique deities, creatures, and tales that have shaped Eastern European culture for centuries.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="card-content">
+                        <h3>Unexplored Territory</h3>
+                        <p>While Greek, Roman, and Norse mythologies have been widely incorporated into modern media, Slavic mythology remains relatively undiscovered in digital applications.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="card-content">
+                        <h3>Personal Connection</h3>
+                        <p>This project aligns with my personal heritage and interest, allowing me to share the fascinating stories and characters that have been part of Slavic culture for generations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="api-features">
+            <h2>API Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">1</div>
+                    <div class="feature-content">
+                        <h3>Deities Database</h3>
+                        <p>Access comprehensive information about major and minor Slavic gods and goddesses, including their domains, attributes, and associated symbols.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">2</div>
+                    <div class="feature-content">
+                        <h3>Mythical Creatures</h3>
+                        <p>Explore a diverse collection of Slavic mythical beings, from the fearsome Baba Yaga to the mischievous Domovoi house spirits.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">3</div>
+                    <div class="feature-content">
+                        <h3>Folklore & Tales</h3>
+                        <p>Discover traditional Slavic stories, legends, and folktales that have been passed down through generations.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">4</div>
+                    <div class="feature-content">
+                        <h3>Symbols & Artifacts</h3>
+                        <p>Learn about important symbols and artifacts in Slavic mythology and their significance in traditional rituals and beliefs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="roadmap">
+            <h2>Project Roadmap</h2>
+            <p>
+                The Slavic API Project is still in its early stages, with a basic test application already developed for initial trials. Here's what's on the horizon:
+            </p>
+            <ul style="list-style-type: none; margin-left: 1rem;">
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                    <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">→</span>
+                    <strong>Phase 1 (Current):</strong> Building the core API infrastructure and populating the initial database with essential Slavic mythological entities.
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                    <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">→</span>
+                    <strong>Phase 2:</strong> Expanding the database with more obscure myths and regional variations, implementing advanced search and filtering capabilities.
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                    <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">→</span>
+                    <strong>Phase 3:</strong> Creating an image repository with artistic representations of Slavic mythological figures, developing interactive storytelling features.
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                    <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">→</span>
+                    <strong>Future Vision:</strong> Building a community platform for folklore enthusiasts and developers to contribute and collaborate on expanding the API.
+                </li>
+            </ul>
+        </section>
+        
+        <section id="call-to-action">
+            <h2>Join the Journey</h2>
+            <p>
+                I invite developers, mythology enthusiasts, and curious minds to explore, contribute, and collaborate on this growing project. Whether you're interested in using the API for your own applications or contributing to its development, your involvement is welcome.
+            </p>
+            <p style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="btn" style="margin-right: 1rem;">View Documentation</a>
+                <a href="#" class="btn" style="background-color: transparent; color: var(--primary);">Contribute</a>
+            </p>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>The Slavic API Project is a personal initiative to bring the rich cultural heritage of Slavic mythology to modern application development.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: #ccc; text-decoration: none;">Documentation</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: #ccc; text-decoration: none;">API Reference</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: #ccc; text-decoration: none;">Examples</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: #ccc; text-decoration: none;">Contribute</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Interested in collaborating or learning more about the project? Reach out through LinkedIn or visit my personal website.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/roman-tsisyk/" class="social-link">in</a>
+                        <a href="https://roman-tsisyk.com/" class="social-link">web</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Slavic API Project. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
